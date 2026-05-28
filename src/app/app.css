@@ -1,0 +1,120 @@
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+/* Lado izquierdo */
+.brand-side {
+  flex: 1;
+  position: relative;
+  background: #1E293B; /* Color oscuro base si no hay foto aún */
+  display: flex;
+  align-items: center;
+  padding: 4rem;
+}
+
+.brand-info {
+  position: relative;
+  z-index: 2;
+  color: white;
+}
+
+.brand-logo {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.brand-title {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin: 0 0 1rem 0;
+}
+
+/* Lado derecho */
+.form-side {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--card);
+  padding: 2rem;
+}
+
+.login-box {
+  width: 100%;
+  max-width: 420px;
+}
+
+.welcome-title {
+  font-size: 2rem;
+  color: var(--foreground);
+  margin: 0 0 0.5rem 0;
+}
+
+.welcome-subtitle {
+  color: var(--muted-foreground);
+  margin: 0 0 2rem 0;
+}
+
+/* Selector de Roles */
+.role-group {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.role-btn {
+  flex: 1;
+  border-radius: var(--radius) !important;
+  background-color: #E2E8F0 !important; /* Gris claro para los botones inactivos */
+  color: var(--foreground) !important;
+}
+
+.role-btn.active {
+  background-color: var(--primary) !important;
+  color: white !important;
+}
+
+/* Formulario e Inputs de Material */
+.input-container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.5rem;
+}
+
+.input-label {
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: var(--foreground);
+}
+
+.full-width {
+  width: 100%;
+}
+
+/* Aplica el redondeado de tu Figma a los campos de Material */
+::v-deep .mat-mdc-text-field-wrapper {
+  border-radius: var(--radius) !important;
+  background-color: #F0F4F8 !important; /* Fondo grisáceo del input en tu Figma */
+}
+
+/* Botón Ingresar */
+.submit-btn {
+  width: 100%;
+  background-color: var(--sgpd-dark) !important;
+  color: white !important;
+  padding: 1.4rem 0 !important;
+  border-radius: var(--radius) !important;
+  margin-top: 1rem;
+  font-size: 1rem !important;
+}
+
+.register-link {
+  display: block;
+  text-align: center;
+  margin-top: 1.5rem;
+  color: var(--primary);
+  text-decoration: none;
+}

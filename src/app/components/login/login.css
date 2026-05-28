@@ -1,0 +1,146 @@
+.login-wrapper {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* LADO IZQUIERDO: Branding */
+.brand-side {
+  flex: 12;
+  position: relative;
+  background: #1a365d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  color: white;
+}
+
+.brand-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #1a365d 0%, #2b6cb0 100%);
+  z-index: 1;
+}
+
+.brand-info {
+  position: relative;
+  z-index: 2;
+  max-width: 450px;
+}
+
+.brand-logo {
+  font-size: 3rem;
+  font-weight: 800;
+  margin: 0 0 5px 0;
+}
+
+.brand-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin: 0 0 15px 0;
+  line-height: 1.3;
+}
+
+.brand-description {
+  font-size: 1rem;
+  opacity: 0.9;
+  line-height: 1.4;
+}
+
+/* LADO DERECHO: Formulario (Con Scroll por si la terminal estorba) */
+.form-side {
+  width: 500px;
+  min-width: 500px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  box-shadow: -5px 0 25px rgba(0,0,0,0.05);
+  overflow-y: auto; /* <-- Esto permite hacer scroll si la pantalla es enana */
+}
+
+.login-box {
+  width: 100%;
+  max-width: 380px;
+  padding: 10px 0;
+}
+
+.welcome-title {
+  font-size: 1.6rem;
+  color: #2d3748;
+  font-weight: 700;
+  margin: 0 0 4px 0;
+}
+
+.welcome-subtitle {
+  color: #718096;
+  font-size: 0.9rem;
+  margin: 0 0 20px 0;
+}
+
+/* Reducimos el espacio de los botones de rol */
+.role-group {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.role-btn {
+  flex: 1;
+  font-size: 0.85rem !important;
+}
+
+.credentials-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Espaciado más compacto */
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.full-width {
+  width: 100% !important;
+}
+
+/* Estilizamos el botón de enviar para que resalte */
+.submit-btn {
+  width: 100%;
+  padding: 10px !important;
+  margin-top: 10px;
+  font-weight: 600 !important;
+}
+
+.register-link {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+  color: #3182ce;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.register-link:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 900px) {
+  .brand-side { display: none; }
+  .form-side { width: 100%; min-width: 100%; }
+}

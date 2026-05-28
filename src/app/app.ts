@@ -1,12 +1,17 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component } from '@angular/core';
+import { RouterOutlet, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
-  templateUrl: './app.html',
-  styleUrl: './app.css'
+  standalone: true,
+  imports: [RouterOutlet, RouterModule], // <-- Agregamos RouterModule aquí para que despierte
+  template: `<router-outlet></router-outlet>`,
+  styles: [`
+    :host {
+      display: block;
+      height: 100vh;
+      width: 100vw;
+    }
+  `]
 })
-export class App {
-  protected readonly title = signal('sgpd-app');
-}
+export class App {}

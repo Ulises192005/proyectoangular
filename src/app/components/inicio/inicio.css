@@ -1,0 +1,79 @@
+.landing-wrapper {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  /* Imagen de fondo institucional abstracta de alta calidad */
+  background: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1920') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.landing-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  /* Capa de azul marino oscuro degradado */
+  background: linear-gradient(135deg, rgba(16, 42, 67, 0.95) 0%, rgba(25, 118, 210, 0.8) 100%);
+  z-index: 1;
+}
+
+.landing-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  max-width: 700px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+.system-logo {
+  font-size: 5rem;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: 4px;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.system-title {
+  font-size: 2.2rem;
+  font-weight: 500;
+  margin: 0;
+  color: #e3f2fd;
+  line-height: 1.2;
+}
+
+.system-tagline {
+  font-size: 1.2rem;
+  opacity: 0.85;
+  margin: 0 0 25px 0;
+  font-weight: 300;
+}
+
+/* Botón flotante extendido de Material Design */
+.continue-btn {
+  padding: 28px 40px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 1px !important;
+  background-color: #1976d2 !important;
+  color: white !important;
+  border-radius: 50px !important;
+  box-shadow: 0 6px 20px rgba(25, 118, 210, 0.4) !important;
+  transition: all 0.3s ease !important;
+}
+
+.continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(25, 118, 210, 0.5) !important;
+}
