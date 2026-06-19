@@ -1,52 +1,80 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
+import { RouterModule, Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms'; // <-- Importamos ReactiveFormsModule
 
-import { MatButtonModule } from '@angular/material/button';
-import { MatInputModule } from '@angular/material/input';
+// SERVICIOS
+import { AuthService } from '../../services/auth.service';
+
+// MATERIAL
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
+    RouterModule,
+    ReactiveFormsModule, // <-- Agregamos aquí para que reconozca [formGroup]
     MatFormFieldModule,
     MatInputModule,
-    MatButtonModule,
-    RouterModule
+    MatButtonModule
   ],
-  templateUrl: './login.html',
-  styleUrl: './login.css'
+  templateUrl: './login.html'
 })
 export class LoginComponent {
-  rolSeleccionado = 'Empleado';
+  
+  loginForm: FormGroup;
+  rolSeleccionado: string = 'Empleado'; 
 
-  loginForm = new FormGroup({
-    correo: new FormControl('', [Validators.required, Validators.email]),
-    contrasena: new FormControl('', [Validators.required, Validators.minLength(4)])
-  });
-
-  constructor(private router: Router) {}
+  constructor(
+    private fb: FormBuilder, 
+    private authService: AuthService, 
+    private router: Router
+  ) {
+    // Inicializamos el formulario con las validaciones que tu HTML espera
+    this.loginForm = this.fb.group({
+      correo: ['', [Validators.required, Validators.email]],
+      contrasena: ['', [Validators.required]]
+    });
+  }
 
   seleccionarRol(rol: string) {
     this.rolSeleccionado = rol;
+    console.log('Rol seleccionado:', this.rolSeleccionado);
   }
 
+  // Cambiado al nombre exacto que tiene tu botón en el HTML: (ngSubmit)="alEnviar()"
   alEnviar() {
-    if (this.loginForm.valid) {
-      console.log('Rol seleccionado antes de desviar:', this.rolSeleccionado); // Esto te ayudará a ver en la consola si el rol cambia
-      
-      if (this.rolSeleccionado === 'Empleado') {
-        this.router.navigate(['/dashboard-empleado']);
-      } else if (this.rolSeleccionado === 'Secretaría') {
-        this.router.navigate(['/dashboard-secretaria']);
-      } else if (this.rolSeleccionado === 'Gerente') {
-        this.router.navigate(['/dashboard-gerente']);
+    if (this.loginForm.invalid) return;
+
+    const datosLogin = {
+      correo: this.loginForm.value.correo,
+      contrasena: this.loginForm.value.contrasena,
+      rol: this.rolSeleccionado
+    };
+
+    console.log('Intentando conectar login con Postgres...', datosLogin);
+
+    this.authService.login(datosLogin).subscribe({
+      next: (res: any) => {
+        alert(`¡Bienvenido! Ingreso exitoso como ${res.usuario.rol}`);
+        
+        // Redirección basada en el rol de la Base de Datos
+        if (res.usuario.rol === 'Empleado') {
+          this.router.navigate(['/dashboard-empleado']);
+        } else if (res.usuario.rol === 'Secretaría') {
+          this.router.navigate(['/dashboard-secretaria']);
+        } else if (res.usuario.rol === 'Gerente') {
+          this.router.navigate(['/dashboard-gerente']);
+        }
+      },
+      error: (err: any) => {
+        console.error(err);
+        alert(err.error?.mensaje || 'Error al iniciar sesión.');
       }
-    }
+    });
   }
 }

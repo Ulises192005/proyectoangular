@@ -25,6 +25,9 @@
                 "input": "public"
               }
             ],
+            "polyfills": [
+              "zone.js"
+            ],
             "styles": ["src/material-theme.scss", "src/styles.css"]
           },
           "configurations": {
@@ -34,7 +37,7 @@
                   "type": "initial",
                   "maximumWarning": "500kB",
                   "maximumError": "1MB"
-                },
+                }
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "4kB",
